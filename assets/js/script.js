@@ -11,15 +11,15 @@
 
 // Pseudocode
 
-// Set of questions - array of objects
+// !Set of questions - array of objects
 // each question needs the following:
-  // question text
-  // set of answers
-  // which answer is correct
+  // !question text
+  // !set of answers
+  // !which answer is correct
 
 // Landing page:
-  // explanation of quiz
-  // start button
+  // !explanation of quiz
+  // !start button
 
 // Click the start button: 
   // Landing page goes away - use CSS - classes already set uo for this
@@ -38,7 +38,7 @@
   // Timer stops
   // Question disappears
   // Form appears for user to enter their initials
-  // Display their score
+  // Display their score - whatever time left is their final score
 
 // User submits form
   // Initials and score get stored in local storage
@@ -146,7 +146,7 @@
       feedbackEl.setAttribute('class', 'feedback');
       setTimeout( function() {
         feedbackEl.setAttribute('class', 'feedback hide'); 
-      }, 2000)
+      }, 1500)
 
       questionIndex++
       
@@ -162,6 +162,7 @@
     clearInterval(timerInterval);
     questionsEl.setAttribute('class', 'hide');
     endScreen.removeAttribute('class');
+    finalScore.textContent = timer; // Final score is whatever time is left 
   }
 
   // Function to save the score to local storage
@@ -171,4 +172,5 @@
   }
 
   startBtn.addEventListener ('click', startQuiz);
+  submitBtn.addEventListener('submit', saveScore);
 
