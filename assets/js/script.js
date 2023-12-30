@@ -22,23 +22,23 @@
   // !start button
 
 // Click the start button: 
-  // Landing page goes away - use CSS - classes already set uo for this
-  // TImer starts 
-  // The quesiton appears (with its answers)
+  // !Landing page goes away - use CSS - classes already set up for this
+  // !Timer starts 
+  // !The quesiton appears (with its answers)
 
 // For each question: 
-  // User clicks an answer
-  // Their choice is compared to the correct answer as stored in the question's object
-  // If correct, tell them
-  // If incorrect, tell them AND subtract time from the timer
+  // !User clicks an answer
+  // !Their choice is compared to the correct answer as stored in the question's object
+  // !If correct, tell them
+  // !If incorrect, tell them AND subtract time from the timer
   // Optional: play a sound for correct/incorrect
-  // Either way, the question dissapears after a few seconds and the next question appears
+  // !Either way, the question dissapears after a few seconds and the next question appears
 
 // After the last question: 
-  // Timer stops
-  // Question disappears
-  // Form appears for user to enter their initials
-  // Display their score - whatever time left is their final score
+  // !Timer stops
+  // !Question disappears
+  // !Form appears for user to enter their initials
+  // !Display their score - whatever time left is their final score
 
 // User submits form
   // Initials and score get stored in local storage
@@ -58,6 +58,9 @@
   const initials = document.getElementById('initials');
   const feedbackEl = document.getElementById('feedback');
   const titleEl = document.getElementById('question-title');
+  const msgDiv = document.getElementById('msg');
+  const highscoresWrapper = document.getElementById('highscores-wrapper');
+  const highScores = document.getElementById('highscores');
 
   // Array of questions
   let questions = [
@@ -165,12 +168,46 @@
     finalScore.textContent = timer; // Final score is whatever time is left 
   }
 
-  // Function to save the score to local storage
-
-  function saveScore() {
-    
+  // Function to display error message
+  function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
   }
 
+  // Function to print Initials & score to Highscore page
+  function saveScore() {
+    //event.preventDefault();
+    
+    highscoresWrapper.removeAttribute('class', 'hide');
+    endScreen.setAttribute('class', 'hide');
+
+    localStorage.setItem('score', timer);
+    localStorage.setItem('initials', JSON.stringify(initials)); 
+
+    renderHighScore();  
+  }
+
+  function renderHighScore(){
+    const name = JSON.parse(localStorage.getItem('initials')); 
+    const score = localStorage.getItem('score')
+    let liEl = document.createElement("li");
+    
+    highScores.appendChild(liEl);
+    liEl.textContent = name; 
+  };
+
+  
+  submitBtn.addEventListener('click', function(){
+    const initials = document.querySelector('#initials').value;
+
+    if (initials === '') {
+      displayMessage('error', 'Please enter your initials')
+    }
+
+    saveScore();
+  });
+
   startBtn.addEventListener ('click', startQuiz);
-  submitBtn.addEventListener('submit', saveScore);
+  
+  
 

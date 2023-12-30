@@ -1,3 +1,11 @@
+/* CSS variables */
+:root {
+  --blue: #4e59c0;
+  --dark: #221c1e;
+  --light: #f9ede3;
+  --green: #1e6157;
+}
+
 body {
   background: url(../images/quiz-bg.jpeg) 0 0 no-repeat;
   font-family: Arial;
@@ -22,7 +30,7 @@ button {
   background-color: #563d7c;
   border-radius: 5px;
   padding: 5px 10px;
-  color: white;
+  color: var(--light);
   border: 0;
   transition: background-color 0.1s;
 }
@@ -55,7 +63,7 @@ li:nth-child(odd) {
 }
 
 .wrapper {
-  background: #fff;
+  background: var(--light);
   margin: 100px auto 0 auto;
   max-width: 600px;
   padding: 30px 50px;
@@ -75,17 +83,22 @@ li:nth-child(odd) {
   left: 10px;
 }
 
+.scores a {
+  color:var(--light);
+}
+
 .feedback {
-  font-style: italic;
+  font-weight: bold;
   font-size: 120%;
   margin-top: 20px;
   padding-top: 10px;
   color: gray;
   border-top: 2px solid #ccc;
+  text-align: center;
 }
 
 .timer {
-  color: #fff;
+  color: var(--light);
   font-weight:  bold;
   position: absolute;
   top: 10px;
