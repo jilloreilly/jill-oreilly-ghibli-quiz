@@ -42,9 +42,9 @@
 
 // User submits form
   // Initials and score get stored in local storage
-  // User is taken to the high scores page
+  // !User is taken to the high scores page
   // High scores are listed, sorted highest to lowest
-  // User has option to take the quiz again 
+  // !User has option to take the quiz again 
 
   // Variables to reference DOM elements
   let timerEl = document.getElementById('time');
@@ -61,6 +61,8 @@
   const msgDiv = document.getElementById('msg');
   const highscoresWrapper = document.getElementById('highscores-wrapper');
   const highScores = document.getElementById('highscores');
+  const viewScores = document.getElementById('view-scores');
+  const clear = document.getElementById('clear');
 
   // Array of questions
   let questions = [
@@ -197,7 +199,8 @@
   };
 
   
-  submitBtn.addEventListener('click', function(){
+  submitBtn.addEventListener('click', function(event){
+    event.preventDefault();
     const initials = document.querySelector('#initials').value;
 
     if (initials === '') {
@@ -205,6 +208,22 @@
     }
 
     saveScore();
+  });
+
+  // Click event loads Highscores  
+  viewScores.addEventListener('click', function(){
+    highscoresWrapper.removeAttribute('class', 'hide');
+    startscreen.setAttribute('class', 'hide');
+  });
+
+  // Clear highscores
+  clear.addEventListener('click', function() {
+    localStorage.clear(); // Empty localstorage
+    
+    // Clear highscores from page
+    while (highScores.hasChildNodes()) {
+      highScores.removeChild(highScores.firstChild);
+    }
   });
 
   startBtn.addEventListener ('click', startQuiz);
