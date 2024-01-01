@@ -213,14 +213,16 @@
 
     console.log(`arrayScores: ${arrayScores}`)
     
-    arrayScores.forEach(element => {
-      const playerInitials = arrayScores[playerIndex].name;
-      const playerScore = arrayScores[playerIndex].score;
-      let liEl = document.createElement("li");
-      highScores.appendChild(liEl);
-      liEl.innerText = `Name: ${playerInitials} - Score: ${playerScore}`;
-      playerIndex ++;
-    });
+    if (arrayScores) {
+      arrayScores.forEach(element => {
+        const playerInitials = arrayScores[playerIndex].name;
+        const playerScore = arrayScores[playerIndex].score;
+        let liEl = document.createElement("li");
+        highScores.appendChild(liEl);
+        liEl.innerText = `Name: ${playerInitials} - Score: ${playerScore}`;
+        playerIndex ++;
+      });  
+    } 
   };
 
   // Function to display error message
@@ -233,17 +235,21 @@
   viewScores.addEventListener('click', function(){
     highscoresWrapper.removeAttribute('class', 'hide');
     startscreen.setAttribute('class', 'hide');
+    clearHighscores();
     renderHighScore();
   });
 
-  // Clear highscores from page and localstorage
-  clear.addEventListener('click', function() {
-    localStorage.clear(); // Empty localstorage
-    
-    // Clear highscores from page
+  // Clear highscores from page
+  function clearHighscores() {
     while (highScores.hasChildNodes()) {
       highScores.removeChild(highScores.firstChild);
-    }
+    };
+  };
+  
+  // Clear localstorage
+  clear.addEventListener('click', function() {
+    localStorage.clear(); // Empty localstorage
+    clearHighscores();
   });
 
   // Click to start quiz
