@@ -63,6 +63,9 @@
   const highScores = document.getElementById('highscores');
   const viewScores = document.getElementById('view-scores');
   const clear = document.getElementById('clear');
+  //let initialsInput;
+  let initialsScore = {};
+  
 
   // Array of questions
   let questions = [
@@ -165,10 +168,48 @@
 // Function to end the quiz
   function endQuiz() {
     clearInterval(timerInterval);
-    questionsEl.setAttribute('class', 'hide');
-    endScreen.removeAttribute('class');
+    questionsEl.setAttribute('class', 'hide'); // Hide questions
+    endScreen.removeAttribute('class'); // Show end screen
     finalScore.textContent = timer; // Final score is whatever time is left 
+
+    saveScore();
   }
+
+  // Function to enter initials & print initials & score to Highscores
+  function saveScore() {
+    console.log('this is before submit is clicked');
+    
+    submitBtn.addEventListener('click', function(){
+      console.log('this is AFTER submit is clicked');
+      
+      let initialsInput = document.querySelector('#initials').value.trim();
+
+      if (initialsInput === '') { // This is not working
+        displayMessage('error', 'Please enter your initials')
+        console.log('BOOOO');
+        return saveScore();
+      };
+
+      highscoresWrapper.removeAttribute('class', 'hide');
+      endScreen.setAttribute('class', 'hide'); 
+      
+      initialsScore = {
+        name: initialsInput,
+        score: timer  
+      };
+      
+      // Set initials and score to local storage
+      localStorage.setItem('initialsScore', JSON.stringify(initialsScore));
+      let random = JSON.parse(localStorage.getItem("initialsScore"));
+      
+
+      let liEl = document.createElement("li");
+      highScores.appendChild(liEl);
+      liEl.innerText = `Name: ${random.name} - Score: ${random.score}`;
+      
+      //renderHighScore();
+    });  
+  };
 
   // Function to display error message
   function displayMessage(type, message) {
@@ -176,47 +217,27 @@
     msgDiv.setAttribute("class", type);
   }
 
-  // Function to print Initials & score to Highscore page
-  function saveScore() {
-    //event.preventDefault();
+  // function renderHighScore(){
+  //   console.log('This is the render highscore function');
+  //   let initialsScore = JSON.parse(localStorage.getItem('initialsScore')); 
+  //   console.log(initialsScore);
+  //   let liEl = document.createElement("li");
     
-    highscoresWrapper.removeAttribute('class', 'hide');
-    endScreen.setAttribute('class', 'hide');
+  //   highScores.appendChild(liEl);
+  //   liEl.textContent = initialsScore; 
+  // };
 
-    localStorage.setItem('score', timer);
-    localStorage.setItem('initials', JSON.stringify(initials)); 
-
-    renderHighScore();  
-  }
-
-  function renderHighScore(){
-    const name = JSON.parse(localStorage.getItem('initials')); 
-    const score = localStorage.getItem('score')
-    let liEl = document.createElement("li");
-    
-    highScores.appendChild(liEl);
-    liEl.textContent = name; 
-  };
-
+  // Enter initials to add to Highscores
   
-  submitBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    const initials = document.querySelector('#initials').value;
-
-    if (initials === '') {
-      displayMessage('error', 'Please enter your initials')
-    }
-
-    saveScore();
-  });
 
   // Click event loads Highscores  
   viewScores.addEventListener('click', function(){
     highscoresWrapper.removeAttribute('class', 'hide');
     startscreen.setAttribute('class', 'hide');
+    saveScore();
   });
 
-  // Clear highscores
+  // Clear highscores from page and localstorage
   clear.addEventListener('click', function() {
     localStorage.clear(); // Empty localstorage
     

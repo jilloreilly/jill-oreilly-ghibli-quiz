@@ -4,6 +4,7 @@
   --dark: #221c1e;
   --light: #f9ede3;
   --green: #1e6157;
+  --yellow: #eddb6a; 
 }
 
 body {
@@ -85,6 +86,11 @@ li:nth-child(odd) {
 
 .scores a {
   color:var(--light);
+  font-weight: bold;
+}
+
+.scores a:hover {
+  color: var(--yellow);
 }
 
 .feedback {
