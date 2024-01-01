@@ -187,7 +187,7 @@
       if (initialsInput === '') { // This is not working
         displayMessage('error', 'Please enter your initials')
         console.log('BOOOO');
-        return saveScore();
+        //return saveScore();
       };
 
       highscoresWrapper.removeAttribute('class', 'hide');
@@ -200,15 +200,20 @@
       
       // Set initials and score to local storage
       localStorage.setItem('initialsScore', JSON.stringify(initialsScore));
-      let random = JSON.parse(localStorage.getItem("initialsScore"));
       
+      renderHighScore();
+    });  
+  };
 
+  function renderHighScore(){
+    console.log('This is Render highscore')
+    let random = JSON.parse(localStorage.getItem("initialsScore"));
+
+    if (random) {
       let liEl = document.createElement("li");
       highScores.appendChild(liEl);
       liEl.innerText = `Name: ${random.name} - Score: ${random.score}`;
-      
-      //renderHighScore();
-    });  
+    }
   };
 
   // Function to display error message
@@ -216,25 +221,12 @@
     msgDiv.textContent = message;
     msgDiv.setAttribute("class", type);
   }
-
-  // function renderHighScore(){
-  //   console.log('This is the render highscore function');
-  //   let initialsScore = JSON.parse(localStorage.getItem('initialsScore')); 
-  //   console.log(initialsScore);
-  //   let liEl = document.createElement("li");
-    
-  //   highScores.appendChild(liEl);
-  //   liEl.textContent = initialsScore; 
-  // };
-
-  // Enter initials to add to Highscores
   
-
   // Click event loads Highscores  
   viewScores.addEventListener('click', function(){
     highscoresWrapper.removeAttribute('class', 'hide');
     startscreen.setAttribute('class', 'hide');
-    saveScore();
+    renderHighScore();
   });
 
   // Clear highscores from page and localstorage
