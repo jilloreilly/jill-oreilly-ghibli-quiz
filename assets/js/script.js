@@ -135,7 +135,6 @@
       if (initialsInput === '') { // This is not working
         displayMessage('error', 'Please enter your initials')
         console.log('BOOOO');
-        //return saveScore();
       };
 
       // Set initials and score to local storage as an array of objects
@@ -158,12 +157,13 @@
     let arrayScores = JSON.parse(localStorage.getItem("initialsScore"));
     let playerIndex = 0;
 
-    // Sort array of scores in descending order
-    arrayScores.sort((s1, s2)=> {
-      return s2.score - s1.score;
-    });
-    
     if (arrayScores) {
+      // Sort array of scores in descending order  
+      arrayScores.sort((s1, s2)=> {
+        return s2.score - s1.score;
+      });
+
+      // Loop through array and print to screen
       arrayScores.forEach(element => {
         const playerInitials = arrayScores[playerIndex].name;
         const playerScore = arrayScores[playerIndex].score;
@@ -185,6 +185,7 @@
   viewScores.addEventListener('click', function(){
     highscoresWrapper.removeAttribute('class', 'hide');
     startscreen.setAttribute('class', 'hide');
+    questionsEl.setAttribute('class', 'hide');
     endScreen.setAttribute('class', 'hide');
     clearHighscores(); // When clicking on Highscores link, remove existing highscores from page to prevent duplication
     renderHighScore();
