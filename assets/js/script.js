@@ -189,7 +189,7 @@
         //return saveScore();
       };
 
-      // Set initials and score to local storage
+      // Set initials and score to local storage as an array of objects
       let scoresList = JSON.parse(localStorage.getItem('initialsScore')) || [];
       let lastPLayer = {name: initialsInput, score: timer };
       scoresList.push(lastPLayer);
@@ -235,6 +235,7 @@
   viewScores.addEventListener('click', function(){
     highscoresWrapper.removeAttribute('class', 'hide');
     startscreen.setAttribute('class', 'hide');
+    endScreen.setAttribute('class', 'hide');
     clearHighscores();
     renderHighScore();
   });
