@@ -127,13 +127,10 @@
 
   // Function to save initials and score 
   function saveScore() {
-    console.log('this is before submit is clicked');
     
     submitBtn.addEventListener('click', function(){
-      console.log('this is AFTER submit is clicked');
       
       let initialsInput = document.querySelector('#initials').value.trim();
-      //console.log(initialsInput);
 
       if (initialsInput === '') { // This is not working
         displayMessage('error', 'Please enter your initials')
@@ -157,11 +154,8 @@
 
   // Function to print initials and score to page
   function renderHighScore(){
-    console.log('This is Render highscore')
     let arrayScores = JSON.parse(localStorage.getItem("initialsScore"));
     let playerIndex = 0;
-
-    console.log(`arrayScores: ${arrayScores}`)
     
     if (arrayScores) {
       arrayScores.forEach(element => {
