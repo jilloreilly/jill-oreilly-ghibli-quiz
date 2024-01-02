@@ -130,25 +130,27 @@
     
     submitBtn.addEventListener('click', function(){
       
-      let initialsInput = document.querySelector('#initials').value.trim();
+      //let initialsInput = document.querySelector('#initials').value.trim();
+      let initialsInput = initials.value.trim();
+      console.log(`initialsInput - ${initialsInput}`);
 
-      if (initialsInput === '') { // This is not working
-        displayMessage('error', 'Please enter your initials')
-        console.log('BOOOO');
+      if (initialsInput.length == 0) {
+        // displayMessage('error', 'Please enter your initials')
+        alert('Please enter your initials');
+      } else {
+        // Set initials and score to local storage as an array of objects
+        let scoresList = JSON.parse(localStorage.getItem('initialsScore')) || [];
+        let lastPLayer = {name: initialsInput, score: timer };
+        
+        scoresList.push(lastPLayer);
+
+        localStorage.setItem('initialsScore', JSON.stringify(scoresList));
+
+        highscoresWrapper.removeAttribute('class', 'hide');
+        endScreen.setAttribute('class', 'hide');
+      
+        renderHighScore();
       };
-
-      // Set initials and score to local storage as an array of objects
-      let scoresList = JSON.parse(localStorage.getItem('initialsScore')) || [];
-      let lastPLayer = {name: initialsInput, score: timer };
-      
-      scoresList.push(lastPLayer);
-
-      localStorage.setItem('initialsScore', JSON.stringify(scoresList));
-
-      highscoresWrapper.removeAttribute('class', 'hide');
-      endScreen.setAttribute('class', 'hide');
-      
-      renderHighScore();
     });  
   };
 
@@ -176,10 +178,10 @@
   };
 
   // Function to display error message
-  function displayMessage(type, message) {
-    msgDiv.textContent = message;
-    msgDiv.setAttribute("class", type);
-  }
+  // function displayMessage(type, message) {
+  //   msgDiv.textContent = message;
+  //   msgDiv.setAttribute("class", type);
+  // }
   
   // Click event loads Highscores  
   viewScores.addEventListener('click', function(){
