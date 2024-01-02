@@ -1,51 +1,3 @@
-// Create a code quiz that contains the following requirements:
-
-// A start button that when clicked a timer starts and the first question appears.
-
-// Questions contain buttons for each answer.
-// When answer is clicked, the next question appears
-// If the answer clicked was incorrect then subtract time from the clock
-// The quiz should end when all questions are answered or the timer reaches 0.
-
-// When the game ends, it should display their score and give the user the ability to save their initials and their score
-
-// Pseudocode
-
-// !Set of questions - array of objects
-// each question needs the following:
-  // !question text
-  // !set of answers
-  // !which answer is correct
-
-// Landing page:
-  // !explanation of quiz
-  // !start button
-
-// Click the start button: 
-  // !Landing page goes away - use CSS - classes already set up for this
-  // !Timer starts 
-  // !The quesiton appears (with its answers)
-
-// For each question: 
-  // !User clicks an answer
-  // !Their choice is compared to the correct answer as stored in the question's object
-  // !If correct, tell them
-  // !If incorrect, tell them AND subtract time from the timer
-  // Optional: play a sound for correct/incorrect
-  // !Either way, the question dissapears after a few seconds and the next question appears
-
-// After the last question: 
-  // !Timer stops
-  // !Question disappears
-  // !Form appears for user to enter their initials
-  // !Display their score - whatever time left is their final score
-
-// User submits form
-  // !Initials and score get stored in local storage
-  // !User is taken to the high scores page
-  // High scores are listed, sorted highest to lowest
-  // !User has option to take the quiz again 
-
   // Variables to reference DOM elements
   let timerEl = document.getElementById('time');
   let startscreen = document.getElementById('start-screen');
@@ -193,8 +145,6 @@
       let scoresList = JSON.parse(localStorage.getItem('initialsScore')) || [];
       let lastPLayer = {name: initialsInput, score: timer };
       scoresList.push(lastPLayer);
-      
-      //console.log(`scoresList: ${scoresList}`);
 
       localStorage.setItem('initialsScore', JSON.stringify(scoresList));
 
