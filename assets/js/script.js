@@ -141,6 +141,7 @@
       // Set initials and score to local storage as an array of objects
       let scoresList = JSON.parse(localStorage.getItem('initialsScore')) || [];
       let lastPLayer = {name: initialsInput, score: timer };
+      
       scoresList.push(lastPLayer);
 
       localStorage.setItem('initialsScore', JSON.stringify(scoresList));
@@ -156,6 +157,11 @@
   function renderHighScore(){
     let arrayScores = JSON.parse(localStorage.getItem("initialsScore"));
     let playerIndex = 0;
+
+    // Sort array of scores in descending order
+    arrayScores.sort((s1, s2)=> {
+      return s2.score - s1.score;
+    });
     
     if (arrayScores) {
       arrayScores.forEach(element => {
