@@ -236,7 +236,7 @@
     highscoresWrapper.removeAttribute('class', 'hide');
     startscreen.setAttribute('class', 'hide');
     endScreen.setAttribute('class', 'hide');
-    clearHighscores();
+    clearHighscores(); // When clicking on Highscores link, remove existing highscores from page to prevent duplication
     renderHighScore();
   });
 

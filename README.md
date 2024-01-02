@@ -11,25 +11,26 @@ The application has been optimised for viewing across all devices.
 
 ## Usage
 
-1. The **Studio Ghibli** quiz can be accessed online on Github pages: [https://jilloreilly.github.io/password-generator/](https://jilloreilly.github.io/password-generator/
-)
-2. Click on the "Generate Password" button      
+1. The **Studio Ghibli** quiz can be accessed online on Github pages: [https://jilloreilly.github.io/jill-oreilly-ghibli-quiz/index.html](https://jilloreilly.github.io/jill-oreilly-ghibli-quiz/index.html)
+2. Click on the "Start Quiz" button      
 
-![Password Generator application - click on the Generate Password button.](assets/images/1-password-generator.png)
+![Studio Ghibli Quiz - click on the Start Quiz button.](assets/images/1-screenshot-quiz-start.png)
 
-3. The user will be prompted to enter a number between 8 and 128 (inclusive)
+3. The player will be presented with the first question and a choice of answers (A, B, C, D) and the timer will start counting dpwm from 75
 
-![Password Generator application - Prompt user for password length.](assets/images/2-pwd-length-prompt.png)
+![Studio Ghibli Quiz - Questions with 4 answer choices.](assets/images/2-screenshot-questions.png)
 
-4. The user will then be asked to confirm whether to include the following character sets for their password:
-  - Special characters
-  - Numeric characters
-  - Uppercase characters
-  - Lowercase characters
+4. Feedback will be shown to the player if the answer is correct or incorrect. If the answer is incorrect, 10 seconds will be deducted from the timer 
 
-5. After the user has confirmed the character sets, a randomly generated password (consisting of the character sets chosen) will be printed to the screen.
+![Studio Ghibli Quiz - Incorrect answer, 10 seconds deducted from timer.](assets/images/3-screenshot-feedback.png)
 
-![Password Generator application - Randomly generated password printed to screen.](assets/images/3-generated-password.png)
+5. At the end of the quiz, the player's final score (the time left) will be displayed as well as the ability to enter their initials and save it to the HighScores page.
+
+![Studio Ghibli Quiz - Quiz end, player can enter initaials.](assets/images/4-screenshot-quiz-end.png)
+
+6. Once the player's initials have been submitted, the player is shown the high scores. The player has the choice to clear the highscores and/or start the quiz again
+
+![Studio Ghibli Quiz - Highscores sorted in descending order. Player can clear scores and/or play again.](assets/images/5-screenshot-highscores.png)
 
 
 ## Credits
@@ -37,14 +38,20 @@ The application has been optimised for viewing across all devices.
 Thank you to the following:
 
 - MDN web docs for:
-  - [push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
-  - [Math.random()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) 
-  
-- CSS Tricks for [randomly selecting item from an array](https://css-tricks.com/snippets/javascript/select-random-item-array/)
+  - [sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+  - [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+  - [JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+  - [JSON.parse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) 
 
-- W3CSchools for [array methods](https://www.w3schools.com/js/js_array_methods.asp)
+- W3CSchools for [removeChild()](https://www.w3schools.com/jsref/met_node_removechild.asp)
 
-- My tutor **Cody Junier** for helping me resolve a issue whereby a new password was appended to the previous password upon clicking "Generate password" again - Solution: remove global variables and set inside function
+- Free Code Camp for [array of objects](https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/)
+
+- Scaler for [Sorting an array of Objects](https://www.scaler.com/topics/javascript-sort-an-array-of-objects/)
+
+- Studio Ghibli for [Spirited Away film still](https://www.ghibli.jp/works/chihiro/#frame)
+
+- My TA **Christopher Kratz** for guiding and advising Pod 2 through the start of the challenge.
 
 
 
@@ -74,9 +81,10 @@ SOFTWARE.
 
 ## Technologies Used
 
+
+![Static Badge](https://img.shields.io/badge/JavaScript-yellow)
 ![Static Badge](https://img.shields.io/badge/HTML5-orange)
 ![Static Badge](https://img.shields.io/badge/CSS3-blue)
-![Static Badge](https://img.shields.io/badge/JavaScript-yellow)
 
 
 
